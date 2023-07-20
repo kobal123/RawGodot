@@ -1,0 +1,57 @@
+[gd_scene load_steps=5 format=3 uid="uid://df8fglr3sw57s"]
+
+[ext_resource type="Script" path="res://ShaderEdit.gd" id="1_5wthw"]
+[ext_resource type="Script" path="res://applyShaderButton.gd" id="2_gau0a"]
+
+[sub_resource type="FontVariation" id="FontVariation_ojcyr"]
+spacing_space = 15
+
+[sub_resource type="CodeHighlighter" id="CodeHighlighter_ff2og"]
+number_color = Color(0.882353, 0.615686, 0.27451, 1)
+symbol_color = Color(1, 0.439216, 0.521569, 1)
+function_color = Color(0.294118, 0.419608, 0.878431, 1)
+member_variable_color = Color(0.341176, 0.698039, 1, 1)
+keyword_colors = {
+"bool": Color(1, 0.439216, 0.521569, 1),
+"define": Color(1, 0.439216, 0.521569, 1),
+"false": Color(1, 0.439216, 0.521569, 1),
+"float": Color(1, 0.439216, 0.521569, 1),
+"int": Color(1, 0.439216, 0.521569, 1),
+"ivec2": Color(1, 0.439216, 0.521569, 1),
+"override": Color(1, 0.439216, 0.521569, 1),
+"true": Color(1, 0.439216, 0.521569, 1),
+"vec3": Color(1, 0.439216, 0.521569, 1),
+"vec4": Color(1, 0.439216, 0.521569, 1),
+"void": Color(1, 0.439216, 0.521569, 1)
+}
+
+[node name="ShaderEdit" type="CodeEdit"]
+visible = false
+theme_override_fonts/font = SubResource("FontVariation_ojcyr")
+theme_override_font_sizes/font_size = 30
+text = "$define float a = 8.0;
+void main(){
+
+}"
+highlight_all_occurrences = true
+highlight_current_line = true
+syntax_highlighter = SubResource("CodeHighlighter_ff2og")
+minimap_draw = true
+symbol_lookup_on_click = true
+gutters_draw_line_numbers = true
+gutters_draw_fold_gutter = true
+code_completion_enabled = true
+indent_automatic = true
+auto_brace_completion_enabled = true
+auto_brace_completion_highlight_matching = true
+script = ExtResource("1_5wthw")
+
+[node name="applyShaderButton" type="Button" parent="."]
+layout_mode = 2
+offset_left = 1265.0
+offset_top = 31.0
+offset_right = 1427.0
+offset_bottom = 62.0
+grow_horizontal = 0
+text = "Apply custom effect"
+script = ExtResource("2_gau0a")

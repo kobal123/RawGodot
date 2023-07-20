@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://dk5cyvjta27io"]
+
+[ext_resource type="Texture2D" uid="uid://cb1fjqglpxk4p" path="res://rawImage.NEF" id="2_0xef2"]
+
+[node name="Control" type="Sprite3D"]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, -1)
+pixel_size = 0.1
+texture = ExtResource("2_0xef2")

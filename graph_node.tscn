@@ -1,0 +1,62 @@
+[gd_scene load_steps=3 format=3 uid="uid://loq0k8w6p08r"]
+
+[ext_resource type="Script" path="res://Controll.gd" id="1_7veep"]
+[ext_resource type="Script" path="res://TextEdit2.gd" id="2_rgsw4"]
+
+[node name="Control" type="ColorRect"]
+custom_minimum_size = Vector2(50, 50)
+offset_left = 815.0
+offset_top = 264.0
+offset_right = 965.0
+offset_bottom = 414.0
+color = Color(1, 1, 1, 0)
+script = ExtResource("1_7veep")
+
+[node name="LineEdit" type="LineEdit" parent="."]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = -27.0
+offset_top = 177.0
+offset_right = 185.0
+offset_bottom = 234.0
+focus_mode = 1
+text = "aaaaaaaaaaaaaaaaaaaa"
+alignment = 1
+max_length = 20
+context_menu_enabled = false
+
+[node name="ColorRect" type="ImageTextEdit" parent="."]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = -769.0
+offset_top = -92.0
+offset_right = 334.0
+offset_bottom = 694.0
+text = "asd
+asd
+asd"
+context_menu_enabled = false
+drag_and_drop_selection_enabled = false
+caret_blink = true
+script = ExtResource("2_rgsw4")
+
+[node name="Button" type="Button" parent="ColorRect"]
+layout_mode = 0
+offset_left = 316.0
+offset_top = 56.0
+offset_right = 382.0
+offset_bottom = 108.0
+text = "asdasd"
+
+[node name="Button2" type="Button" parent="ColorRect"]
+layout_mode = 0
+offset_left = 305.0
+offset_top = 202.0
+offset_right = 405.0
+offset_bottom = 283.0
+text = "asd2"
+
+[connection signal="text_changed" from="LineEdit" to="ColorRect" method="_on_line_edit_text_changed"]
+[connection signal="text_changed" from="ColorRect" to="ColorRect" method="_on_text_changed"]
+[connection signal="pressed" from="ColorRect/Button" to="ColorRect" method="_on_button_pressed"]
+[connection signal="pressed" from="ColorRect/Button2" to="ColorRect" method="_on_button_2_pressed"]

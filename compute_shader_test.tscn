@@ -1,0 +1,74 @@
+[gd_scene load_steps=5 format=3 uid="uid://dnmrp076f1ana"]
+
+[ext_resource type="Script" path="res://CustomCompute.gd" id="1_ydior"]
+[ext_resource type="Shader" path="res://tex_fetch.gdshader" id="2_8vkd4"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qgwbw"]
+shader = ExtResource("2_8vkd4")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_yknfq"]
+shader = ExtResource("2_8vkd4")
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ydior")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+unique_name_in_owner = true
+material = SubResource("ShaderMaterial_qgwbw")
+layout_mode = 0
+offset_right = 960.0
+offset_bottom = 1080.0
+expand_mode = 1
+stretch_mode = 5
+
+[node name="TextureRect2" type="TextureRect" parent="."]
+unique_name_in_owner = true
+material = SubResource("ShaderMaterial_yknfq")
+layout_mode = 0
+offset_left = 960.0
+offset_right = 1920.0
+offset_bottom = 1080.0
+expand_mode = 1
+stretch_mode = 5
+
+[node name="HSlider" type="HSlider" parent="."]
+layout_mode = 0
+offset_left = 602.0
+offset_top = 38.0
+offset_right = 882.0
+offset_bottom = 84.0
+min_value = 0.1
+max_value = 3.0
+step = 0.01
+value = 0.1
+
+[node name="HSlider2" type="HSlider" parent="."]
+layout_mode = 0
+offset_left = 610.0
+offset_top = 101.0
+offset_right = 898.0
+offset_bottom = 144.0
+min_value = -2.0
+max_value = 2.0
+step = 0.01
+
+[node name="HSlider3" type="HSlider" parent="."]
+layout_mode = 0
+offset_left = 597.0
+offset_top = 186.0
+offset_right = 902.0
+offset_bottom = 245.0
+min_value = 0.1
+max_value = 2.0
+step = 0.01
+value = 0.1
+
+[connection signal="value_changed" from="HSlider" to="." method="_on_h_slider_value_changed"]
+[connection signal="value_changed" from="HSlider2" to="." method="_on_h_slider_2_value_changed"]
+[connection signal="value_changed" from="HSlider3" to="." method="_on_h_slider_3_value_changed"]

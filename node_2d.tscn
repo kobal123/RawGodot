@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://bl1smd63mkg2j"]
+
+[ext_resource type="Script" path="res://ColorRect.gd" id="1_efdp4"]
+
+[node name="Node2D" type="ColorRect"]
+offset_right = 1920.0
+offset_bottom = 1080.0
+color = Color(0.12549, 0.12549, 0.12549, 1)
+
+[node name="ColorRect" type="Control" parent="."]
+anchors_preset = 0
+offset_left = 113.0
+offset_top = 442.0
+offset_right = 168.0
+offset_bottom = 489.0
+script = ExtResource("1_efdp4")

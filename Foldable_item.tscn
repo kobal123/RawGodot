@@ -1,0 +1,81 @@
+[gd_scene load_steps=10 format=3 uid="uid://dw5qdca04qeik"]
+
+[ext_resource type="Script" path="res://Foldable_item.gd" id="1_u3ul5"]
+[ext_resource type="Script" path="res://Foldable_panel.gd" id="2_o84be"]
+[ext_resource type="Script" path="res://foldable_item_bar.gd" id="2_sfp8k"]
+[ext_resource type="PackedScene" uid="uid://b2v63xqbcshb8" path="res://call_back_check_box.tscn" id="3_81abs"]
+[ext_resource type="Script" path="res://EffectName.gd" id="5_16g4s"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dooia"]
+bg_color = Color(0.121569, 0.121569, 0.121569, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nkdmy"]
+bg_color = Color(0.121569, 0.121569, 0.121569, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vfnmw"]
+bg_color = Color(0.121569, 0.121569, 0.121569, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jobu0"]
+bg_color = Color(0.121569, 0.121569, 0.121569, 1)
+
+[node name="HBoxContainer" type="VBoxContainer"]
+offset_right = 180.0
+offset_bottom = 73.0
+script = ExtResource("1_u3ul5")
+
+[node name="Panel" type="Panel" parent="."]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_dooia")
+script = ExtResource("2_o84be")
+
+[node name="Container" type="HBoxContainer" parent="Panel"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 9
+script = ExtResource("2_sfp8k")
+
+[node name="CheckBox" parent="Panel/Container" instance=ExtResource("3_81abs")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Label" type="LineEdit" parent="Panel/Container"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+focus_mode = 1
+theme_override_colors/font_uneditable_color = Color(1, 1, 1, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_nkdmy")
+theme_override_styles/focus = SubResource("StyleBoxFlat_vfnmw")
+theme_override_styles/read_only = SubResource("StyleBoxFlat_jobu0")
+text = "Channel mixer"
+caret_blink = true
+script = ExtResource("5_16g4s")
+
+[node name="TextureRect" type="TextureRect" parent="Panel/Container"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+size_flags_horizontal = 8
+expand_mode = 1
+stretch_mode = 5
+
+[node name="PaddingElement" type="Control" parent="Panel/Container"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(10, 10)
+layout_mode = 2
+
+[node name="items" type="VBoxContainer" parent="."]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+
+[connection signal="mouse_entered" from="Panel" to="Panel" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="Panel" to="Panel" method="_on_mouse_exited"]
+[connection signal="focus_exited" from="Panel/Container/Label" to="Panel/Container/Label" method="_on_focus_exited"]
+[connection signal="text_change_rejected" from="Panel/Container/Label" to="Panel/Container/Label" method="_on_text_change_rejected"]

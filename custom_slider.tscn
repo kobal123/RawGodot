@@ -1,0 +1,65 @@
+[gd_scene load_steps=5 format=3 uid="uid://da7q3n40bt1ix"]
+
+[ext_resource type="Texture2D" uid="uid://c1pmmi7aboqhs" path="res://left_circle.png" id="1_bpbdk"]
+[ext_resource type="Script" path="res://custom_slider.gd" id="1_ge73y"]
+[ext_resource type="Script" path="res://CustomProgressBar.gd" id="1_n81gd"]
+[ext_resource type="Script" path="res://custom_rect.gd" id="2_ms2tg"]
+
+[node name="Control" type="VBoxContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1.0
+offset_top = 2.0
+offset_right = -1662.0
+offset_bottom = -843.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ge73y")
+
+[node name="ProgressBar" type="Control" parent="."]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+script = ExtResource("1_n81gd")
+
+[node name="TextureRect" type="TextureRect" parent="ProgressBar"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 43.0
+offset_top = -6.0
+offset_right = 53.0
+offset_bottom = 14.0
+texture = ExtResource("1_bpbdk")
+stretch_mode = 4
+script = ExtResource("2_ms2tg")
+
+[node name="TextureRect2" type="TextureRect" parent="ProgressBar"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 53.0
+offset_top = -6.0
+offset_right = 63.0
+offset_bottom = 14.0
+texture = ExtResource("1_bpbdk")
+stretch_mode = 5
+flip_h = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="red" type="SpinBox" parent="HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+step = 0.001
+
+[node name="green" type="SpinBox" parent="HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+step = 0.001
+
+[node name="blue" type="SpinBox" parent="HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+step = 0.001
+
+[connection signal="value_changed" from="HBoxContainer/red" to="ProgressBar" method="_on_red_value_changed"]

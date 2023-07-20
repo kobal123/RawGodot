@@ -1,0 +1,69 @@
+[gd_scene load_steps=5 format=3 uid="uid://dnnktls5kfych"]
+
+[ext_resource type="Shader" path="res://MASK_ITEM.gdshader" id="1_3g6gy"]
+[ext_resource type="Script" path="res://mask_item_scene.gd" id="1_drh7e"]
+[ext_resource type="Texture2D" uid="uid://rhsljjedcqrp" path="res://result.png" id="2_yjf6k"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_eq2g5"]
+shader = ExtResource("1_3g6gy")
+
+[node name="Control" type="Panel"]
+custom_minimum_size = Vector2(320, 39)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -1600.0
+offset_bottom = -1034.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+script = ExtResource("1_drh7e")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_right = 0
+theme_override_constants/margin_bottom = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_bottom = 2
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer/MarginContainer"]
+unique_name_in_owner = true
+material = SubResource("ShaderMaterial_eq2g5")
+custom_minimum_size = Vector2(70, 39)
+layout_mode = 2
+texture = ExtResource("2_yjf6k")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "asdasda"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button" type="Button" parent="MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(40, 0)
+layout_mode = 2
+size_flags_horizontal = 10
+text = "Delete"
+
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

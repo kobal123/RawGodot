@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://dvjnht4j3os7p"]
+
+[ext_resource type="Script" path="res://transform_test.gd" id="1_iowft"]
+
+[node name="Control" type="Node2D"]
+position = Vector2(76, 57)
+script = ExtResource("1_iowft")

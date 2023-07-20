@@ -1,0 +1,42 @@
+[gd_scene load_steps=4 format=3 uid="uid://b84wx1vrv2h8r"]
+
+[ext_resource type="Script" path="res://channel_mixer_component.gd" id="1_04we5"]
+[ext_resource type="PackedScene" uid="uid://tu5w8af7mk2k" path="res://editor_piece.tscn" id="2_vsm5k"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5rjbu"]
+bg_color = Color(1, 1, 1, 1)
+border_width_top = 2
+border_color = Color(0.952941, 0.952941, 0.952941, 1)
+
+[node name="Control" type="VBoxContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -1553.0
+offset_bottom = -842.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 10
+script = ExtResource("1_04we5")
+
+[node name="Label" type="Label" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Red channel
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="."]
+self_modulate = Color(0.933333, 0.933333, 0.933333, 1)
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxFlat_5rjbu")
+
+[node name="ControlRoot" parent="." instance=ExtResource("2_vsm5k")]
+layout_mode = 2
+
+[node name="ControlRoot2" parent="." instance=ExtResource("2_vsm5k")]
+layout_mode = 2
+
+[node name="ControlRoot3" parent="." instance=ExtResource("2_vsm5k")]
+layout_mode = 2

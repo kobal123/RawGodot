@@ -1,0 +1,133 @@
+[gd_scene load_steps=8 format=3 uid="uid://dgm46fnf0dtj8"]
+
+[ext_resource type="Script" path="res://jpeg_save_hslider.gd" id="1_2iat4"]
+[ext_resource type="Script" path="res://image_save_dialog.gd" id="1_hgb0h"]
+[ext_resource type="Script" path="res://image_save_item_list.gd" id="1_m0wje"]
+[ext_resource type="Script" path="res://jpeg_save_spinbox.gd" id="2_gu3ku"]
+[ext_resource type="Script" path="res://image_save_lineedit_path.gd" id="4_8n7d5"]
+[ext_resource type="Script" path="res://image_save_open_file_directory.gd" id="4_5858k"]
+[ext_resource type="Script" path="res://save_image.gd" id="5_4kvp5"]
+
+[node name="Control" type="Window"]
+position = Vector2i(600, 400)
+size = Vector2i(500, 300)
+script = ExtResource("1_hgb0h")
+
+[node name="Panel" type="Panel" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer" type="VBoxContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/PanelContainer"]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+theme_override_constants/separation = 21
+
+[node name="Label" type="Label" parent="Panel/PanelContainer/HBoxContainer"]
+layout_mode = 2
+text = "Image format:"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ItemList" type="OptionButton" parent="Panel/PanelContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+item_count = 2
+popup/item_0/text = "JPG"
+popup/item_0/id = 0
+popup/item_1/text = "PNG"
+popup/item_1/id = 1
+script = ExtResource("1_m0wje")
+
+[node name="JpegQuality" type="VBoxContainer" parent="Panel/PanelContainer/HBoxContainer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="Panel/PanelContainer/HBoxContainer/JpegQuality"]
+layout_mode = 2
+text = "Quality"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/PanelContainer/HBoxContainer/JpegQuality"]
+layout_mode = 2
+
+[node name="HSlider" type="HSlider" parent="Panel/PanelContainer/HBoxContainer/JpegQuality/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+max_value = 1.0
+step = 0.01
+value = 0.75
+script = ExtResource("1_2iat4")
+
+[node name="SpinBox" type="SpinBox" parent="Panel/PanelContainer/HBoxContainer/JpegQuality/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+max_value = 1.0
+step = 0.01
+value = 0.75
+alignment = 2
+select_all_on_focus = true
+script = ExtResource("2_gu3ku")
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Panel/PanelContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Panel/PanelContainer/HBoxContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Path: "
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="LineEdit" type="LineEdit" parent="Panel/PanelContainer/HBoxContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+max_length = 80
+caret_blink = true
+caret_blink_interval = 0.5
+script = ExtResource("4_8n7d5")
+
+[node name="Button" type="Button" parent="Panel/PanelContainer/HBoxContainer2"]
+layout_mode = 2
+text = "Choose.."
+script = ExtResource("4_5858k")
+
+[node name="FileDialog" type="FileDialog" parent="Panel/PanelContainer/HBoxContainer2/Button"]
+unique_name_in_owner = true
+position = Vector2i(100, 100)
+size = Vector2i(522, 300)
+access = 2
+
+[node name="SaveButton" type="Button" parent="Panel/PanelContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "EXPORT"
+script = ExtResource("5_4kvp5")
+
+[connection signal="close_requested" from="." to="." method="_on_close_requested"]
+[connection signal="item_selected" from="Panel/PanelContainer/HBoxContainer/ItemList" to="Panel/PanelContainer/HBoxContainer/ItemList" method="_on_item_selected"]
+[connection signal="value_changed" from="Panel/PanelContainer/HBoxContainer/JpegQuality/HBoxContainer/HSlider" to="Panel/PanelContainer/HBoxContainer/JpegQuality/HBoxContainer/SpinBox" method="_on_h_slider_value_changed"]
+[connection signal="value_changed" from="Panel/PanelContainer/HBoxContainer/JpegQuality/HBoxContainer/HSlider" to="Panel/PanelContainer/SaveButton" method="_on_h_slider_value_changed"]
+[connection signal="value_changed" from="Panel/PanelContainer/HBoxContainer/JpegQuality/HBoxContainer/SpinBox" to="Panel/PanelContainer/HBoxContainer/JpegQuality/HBoxContainer/HSlider" method="_on_spin_box_value_changed"]
+[connection signal="pressed" from="Panel/PanelContainer/HBoxContainer2/Button" to="Panel/PanelContainer/HBoxContainer2/Button" method="_on_pressed"]
+[connection signal="file_selected" from="Panel/PanelContainer/HBoxContainer2/Button/FileDialog" to="Panel/PanelContainer/HBoxContainer2/Button" method="_on_file_dialog_file_selected"]
+[connection signal="pressed" from="Panel/PanelContainer/SaveButton" to="Panel/PanelContainer/SaveButton" method="_on_pressed"]

@@ -1,0 +1,86 @@
+[gd_scene load_steps=11 format=3 uid="uid://c5juxy8x00nlv"]
+
+[ext_resource type="Script" path="res://double_slider.gd" id="1_4urkw"]
+[ext_resource type="Texture2D" uid="uid://c1pmmi7aboqhs" path="res://left_circle.png" id="1_45g67"]
+[ext_resource type="Script" path="res://red.gd" id="3_8v5ho"]
+[ext_resource type="Script" path="res://blue.gd" id="4_gk0k4"]
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_5rb85"]
+color = Color(0.0156863, 0.933333, 1, 1)
+thickness = 8
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_wku16"]
+color = Color(0, 0, 1, 1)
+thickness = 8
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_hq08w"]
+color = Color(0, 0, 1, 1)
+thickness = 8
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_jkpym"]
+color = Color(0, 1, 0, 1)
+thickness = 8
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_j06eb"]
+color = Color(1, 0, 0, 1)
+thickness = 8
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_cw6sc"]
+color = Color(1, 0, 0, 1)
+thickness = 8
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_4urkw")
+
+[node name="blue" type="HSlider" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+offset_left = 516.0
+offset_top = 320.0
+offset_right = 616.0
+offset_bottom = 340.0
+rotation = 3.14159
+theme_override_constants/grabber_offset = 0
+theme_override_icons/grabber = ExtResource("1_45g67")
+theme_override_icons/grabber_highlight = ExtResource("1_45g67")
+theme_override_styles/slider = SubResource("StyleBoxLine_5rb85")
+theme_override_styles/grabber_area = SubResource("StyleBoxLine_wku16")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxLine_hq08w")
+min_value = 1.0
+max_value = 50.0
+value = 1.0
+script = ExtResource("4_gk0k4")
+
+[node name="red" type="HSlider" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+offset_left = 314.0
+offset_top = 300.0
+offset_right = 414.0
+offset_bottom = 320.0
+theme_override_constants/grabber_offset = 0
+theme_override_icons/grabber = ExtResource("1_45g67")
+theme_override_icons/grabber_highlight = ExtResource("1_45g67")
+theme_override_styles/slider = SubResource("StyleBoxLine_jkpym")
+theme_override_styles/grabber_area = SubResource("StyleBoxLine_j06eb")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxLine_cw6sc")
+min_value = 1.0
+max_value = 50.0
+value = 1.0
+script = ExtResource("3_8v5ho")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[connection signal="drag_ended" from="blue" to="blue" method="_on_drag_ended"]
+[connection signal="drag_started" from="blue" to="blue" method="_on_drag_started"]
+[connection signal="drag_ended" from="red" to="red" method="_on_drag_ended"]
+[connection signal="drag_started" from="red" to="red" method="_on_drag_started"]

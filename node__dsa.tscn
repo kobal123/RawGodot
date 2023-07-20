@@ -1,0 +1,52 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://Controll.gd" id="1_lrkwh"]
+[ext_resource type="Script" path="res://TextEdit2.gd" id="2_0ele4"]
+
+[node name="Control" type="ColorRect"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 0
+offset_left = 1159.0
+offset_top = 22.0
+offset_right = 1309.0
+offset_bottom = 172.0
+color = Color(1, 1, 1, 0)
+script = ExtResource("1_lrkwh")
+connections_str = Array[String](["java"])
+line_edit_text = "dsa"
+
+[node name="LineEdit" type="LineEdit" parent="."]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = -27.0
+offset_top = 177.0
+offset_right = 185.0
+offset_bottom = 234.0
+focus_mode = 1
+text = "dsa"
+alignment = 1
+max_length = 20
+context_menu_enabled = false
+caret_column = 3
+
+[node name="ColorRect" type="ImageTextEdit" parent="."]
+unique_name_in_owner = true
+visible = false
+layout_mode = 0
+offset_left = -769.0
+offset_top = -92.0
+offset_right = 334.0
+offset_bottom = 694.0
+text = "asd
+asd
+asd"
+context_menu_enabled = false
+drag_and_drop_selection_enabled = false
+caret_blink = true
+script = ExtResource("2_0ele4")
+img_positions = PackedVector2Array()
+images = Array[Image]([])
+_name = ""
+
+[connection signal="text_changed" from="LineEdit" to="ColorRect" method="_on_line_edit_text_changed" flags=18]
+[connection signal="text_changed" from="ColorRect" to="ColorRect" method="_on_text_changed" flags=18]

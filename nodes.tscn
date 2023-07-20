@@ -1,0 +1,94 @@
+[gd_scene load_steps=4 format=3 uid="uid://yjmh7751048s"]
+
+[ext_resource type="Script" path="res://nodes.gd" id="1_72pem"]
+[ext_resource type="Script" path="res://Button2.gd" id="2_lcmfx"]
+[ext_resource type="Script" path="res://NodeSaver.gd" id="3_jfgt7"]
+
+[node name="Control" type="ColorRect"]
+clip_children = 2
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.14902, 0.14902, 0.14902, 1)
+script = ExtResource("1_72pem")
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 713.0
+offset_top = 184.0
+offset_right = 836.0
+offset_bottom = 239.0
+text = "Add node"
+
+[node name="NodeContainer" type="Control" parent="."]
+unique_name_in_owner = true
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Button2" type="Button" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 1624.0
+offset_top = 566.0
+offset_right = 1785.0
+offset_bottom = 727.0
+text = "asd"
+script = ExtResource("2_lcmfx")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 1
+anchors_preset = -1
+anchor_bottom = 1.0
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="HBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Search for nodes : "
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 22
+theme_override_constants/margin_right = 10
+
+[node name="LineEdit" type="LineEdit" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/MarginContainer"]
+layout_mode = 2
+placeholder_text = "asdasd"
+
+[node name="HBoxContainer2" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+text = "Search text in nodes : "
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+theme_override_constants/margin_left = 22
+theme_override_constants/margin_right = 10
+
+[node name="NodeTextSearch" type="LineEdit" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2/MarginContainer"]
+layout_mode = 2
+placeholder_text = "asdasd"
+
+[node name="Node" type="Node" parent="."]
+script = ExtResource("3_jfgt7")
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[connection signal="text_changed" from="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/MarginContainer/LineEdit" to="." method="_on_line_edit_text_changed"]
+[connection signal="text_changed" from="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2/MarginContainer/NodeTextSearch" to="." method="_on_node_text_search_text_changed"]

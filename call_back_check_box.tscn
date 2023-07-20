@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://b2v63xqbcshb8"]
+
+[ext_resource type="Script" path="res://CallBackCheckBox.gd" id="1_hfnek"]
+
+[node name="CallBackCheckBox" type="CheckBox"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -1896.0
+offset_bottom = -1056.0
+grow_horizontal = 2
+grow_vertical = 2
+button_pressed = true
+script = ExtResource("1_hfnek")

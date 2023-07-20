@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://mask_draw_overlay.gd" id="1_oan2e"]
+
+[node name="Control" type="TextureRect"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 96.0
+offset_top = 171.0
+offset_right = 96.0
+offset_bottom = 171.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_oan2e")

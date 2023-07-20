@@ -1,0 +1,50 @@
+[gd_scene load_steps=3 format=3 uid="uid://hp3q24w1dflo"]
+
+[ext_resource type="PackedScene" uid="uid://b2v63xqbcshb8" path="res://call_back_check_box.tscn" id="1_6keu7"]
+[ext_resource type="Script" path="res://edge_control.gd" id="1_kj5or"]
+
+[node name="Control" type="Control"]
+custom_minimum_size = Vector2(180, 30)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -1740.0
+offset_bottom = -1050.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_kj5or")
+
+[node name="HBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer2" type="HBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+
+[node name="horizontal" parent="HBoxContainer/VBoxContainer2" instance=ExtResource("1_6keu7")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+text = "Horizontal"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VBoxContainer" type="HBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+
+[node name="vertical" parent="HBoxContainer/VBoxContainer" instance=ExtResource("1_6keu7")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Vertical"
+horizontal_alignment = 1
+vertical_alignment = 1

@@ -1,0 +1,66 @@
+[gd_scene load_steps=8 format=3 uid="uid://do1wfujocu3ig"]
+
+[ext_resource type="Script" path="res://mask_drawing_test.gd" id="1_tnbl5"]
+[ext_resource type="Script" path="res://texture_size_test.gd" id="2_fv043"]
+[ext_resource type="Shader" path="res://MASK_CONTRAST.gdshader" id="3_nyju0"]
+[ext_resource type="Script" path="res://ColorRect__.gd" id="4_1gbxh"]
+[ext_resource type="Texture2D" uid="uid://clq14j8jjbcyn" path="res://sony.ARW" id="4_kvel7"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_sylqh"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_op3j8"]
+shader = ExtResource("3_nyju0")
+shader_parameter/contrast = 1.0
+
+[node name="Control" type="TextureRect"]
+offset_right = 1920.0
+offset_bottom = 1080.0
+stretch_mode = 5
+script = ExtResource("2_fv043")
+
+[node name="TRect" type="TextureRect" parent="."]
+unique_name_in_owner = true
+visible = false
+material = SubResource("ShaderMaterial_sylqh")
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 142.0
+offset_right = -147.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch_mode = 5
+script = ExtResource("1_tnbl5")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="TextureRect" parent="CanvasLayer"]
+unique_name_in_owner = true
+material = SubResource("ShaderMaterial_op3j8")
+offset_left = 143.0
+offset_right = 1781.0
+offset_bottom = 1080.0
+texture = ExtResource("4_kvel7")
+script = ExtResource("4_1gbxh")
+
+[node name="HSlider" type="HSlider" parent="."]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 3.0
+offset_right = 146.0
+offset_bottom = 160.0
+min_value = 60.0
+max_value = 360.0
+value = 128.0
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 217.0
+offset_right = 131.0
+offset_bottom = 553.0
+
+[connection signal="resized" from="." to="." method="_on_resized"]
+[connection signal="texture_changed" from="TRect" to="CanvasLayer/ColorRect" method="_on_texture_rect_texture_changed"]
+[connection signal="value_changed" from="HSlider" to="TRect" method="_on_h_slider_value_changed"]
+[connection signal="pressed" from="Button" to="TRect" method="_on_button_pressed"]

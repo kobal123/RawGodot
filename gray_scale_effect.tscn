@@ -1,0 +1,76 @@
+[gd_scene load_steps=2 format=3 uid="uid://bosndgd36yx22"]
+
+[ext_resource type="Script" path="res://gray_scale_effect.gd" id="1_c7206"]
+
+[node name="Control" type="VBoxContainer"]
+custom_minimum_size = Vector2(300, 300)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 300.0
+offset_top = 300.0
+offset_right = -1320.0
+offset_bottom = -480.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_c7206")
+
+[node name="RedVBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="RedVBoxContainer"]
+layout_mode = 2
+
+[node name="RedChannel" type="HBoxContainer" parent="RedVBoxContainer"]
+layout_mode = 2
+
+[node name="RedSlider" type="HSlider" parent="RedVBoxContainer/RedChannel"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+value = 61.0
+
+[node name="RedSpinbox" type="SpinBox" parent="RedVBoxContainer/RedChannel"]
+unique_name_in_owner = true
+layout_mode = 2
+value = 61.0
+
+[node name="GreenVBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="GreenVBoxContainer"]
+layout_mode = 2
+
+[node name="GreenChannel" type="HBoxContainer" parent="GreenVBoxContainer"]
+layout_mode = 2
+
+[node name="GreenSlider" type="HSlider" parent="GreenVBoxContainer/GreenChannel"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+value = 31.0
+
+[node name="GreenSpinbox" type="SpinBox" parent="GreenVBoxContainer/GreenChannel"]
+unique_name_in_owner = true
+layout_mode = 2
+value = 31.0
+
+[node name="BlueVBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="BlueVBoxContainer"]
+layout_mode = 2
+
+[node name="BlueChannel" type="HBoxContainer" parent="BlueVBoxContainer"]
+layout_mode = 2
+
+[node name="BlueSlider" type="HSlider" parent="BlueVBoxContainer/BlueChannel"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+value = 8.0
+
+[node name="BlueSpinbox" type="SpinBox" parent="BlueVBoxContainer/BlueChannel"]
+unique_name_in_owner = true
+layout_mode = 2
+value = 8.0

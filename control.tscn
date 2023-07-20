@@ -1,0 +1,427 @@
+[gd_scene load_steps=33 format=3 uid="uid://c7qxan8soo7hv"]
+
+[ext_resource type="Script" path="res://main_root_element.gd" id="1_4mp6p"]
+[ext_resource type="Script" path="res://file_dialog.gd" id="2_veom3"]
+[ext_resource type="Script" path="res://image_script.gd" id="3_g6mpa"]
+[ext_resource type="Script" path="res://open_file_button.gd" id="3_tg4g0"]
+[ext_resource type="Script" path="res://file_system_view.gd" id="4_cmcpy"]
+[ext_resource type="Script" path="res://save_image_button.gd" id="4_m4eew"]
+[ext_resource type="Theme" uid="uid://kyt2kjub8vxk" path="res://theme.tres" id="4_uy8ya"]
+[ext_resource type="PackedScene" uid="uid://dgm46fnf0dtj8" path="res://image_save_dialog.tscn" id="5_0j057"]
+[ext_resource type="Shader" path="res://tex_fetch.gdshader" id="6_gdpmy"]
+[ext_resource type="Script" path="res://clip_button.gd" id="6_ja8ba"]
+[ext_resource type="Theme" uid="uid://b0hbqfv1ev1dp" path="res://basic_tab_theme.tres" id="7_e5wr8"]
+[ext_resource type="Shader" path="res://mask_preview.gdshader" id="8_m2yfe"]
+[ext_resource type="Script" path="res://GridContainer.gd" id="9_4hhjx"]
+[ext_resource type="Script" path="res://rightSidePanel.gd" id="9_j7qxg"]
+[ext_resource type="Script" path="res://Mask_drawing.gd" id="11_ow3go"]
+[ext_resource type="Script" path="res://Bottom_TabContainer.gd" id="13_r7dsj"]
+[ext_resource type="Script" path="res://effect_tab_bar.gd" id="13_yuk3y"]
+[ext_resource type="Script" path="res://Histogram_show.gd" id="14_fbafv"]
+[ext_resource type="PackedScene" uid="uid://df8fglr3sw57s" path="res://custom_shader_edit_scene.tscn" id="16_bmps8"]
+[ext_resource type="PackedScene" uid="uid://76yybijhju3m" path="res://image_thumbnail.tscn" id="16_r74jj"]
+[ext_resource type="PackedScene" uid="uid://div5bippnwpw0" path="res://mask.tscn" id="17_mb4wd"]
+[ext_resource type="Script" path="res://MaskScrollContainer.gd" id="18_bwr07"]
+[ext_resource type="PackedScene" uid="uid://dw5qdca04qeik" path="res://Foldable_item.tscn" id="20_j34kd"]
+[ext_resource type="Shader" path="res://control.gdshader" id="20_veceo"]
+[ext_resource type="Script" path="res://MaskDrawing.gd" id="22_n1tup"]
+[ext_resource type="PackedScene" uid="uid://cvpsl7fnxphqm" path="res://crop.tscn" id="23_hjv82"]
+[ext_resource type="Script" path="res://mask_draw_overlay.gd" id="26_py037"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bfv14"]
+shader = ExtResource("6_gdpmy")
+shader_parameter/zoom = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_t4h6m"]
+shader = ExtResource("8_m2yfe")
+shader_parameter/killswitch = 1.0
+shader_parameter/color = Quaternion(1, 0, 0, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_dhdno"]
+
+[sub_resource type="Theme" id="Theme_8aup1"]
+Panel/styles/panel = SubResource("StyleBoxEmpty_dhdno")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wmh3f"]
+shader = ExtResource("20_veceo")
+shader_parameter/killswitch = 1.0
+shader_parameter/color = Quaternion(1, 0, 0, 1)
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -2.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_4mp6p")
+
+[node name="FileDialog" type="FileDialog" parent="."]
+title = "Open a File"
+position = Vector2i(640, 150)
+size = Vector2i(600, 400)
+ok_button_text = "Megnyitás"
+file_mode = 0
+access = 2
+filters = PackedStringArray("*.NEF, *.nef", "*.ARW", "*.png", "*.jpg,*.jpeg")
+script = ExtResource("2_veom3")
+
+[node name="MenuBar" type="MenuBar" parent="."]
+layout_mode = 0
+offset_left = 146.0
+offset_top = 15.0
+offset_right = 1297.0
+offset_bottom = 63.0
+
+[node name="Button" type="Button" parent="MenuBar"]
+visible = false
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+shortcut_feedback = false
+text = "Open file"
+script = ExtResource("3_tg4g0")
+
+[node name="Button2" type="Button" parent="MenuBar"]
+visible = false
+layout_mode = 0
+offset_left = 112.0
+offset_right = 195.0
+offset_bottom = 31.0
+text = "save"
+script = ExtResource("4_m4eew")
+
+[node name="Control" parent="MenuBar/Button2" instance=ExtResource("5_0j057")]
+unique_name_in_owner = true
+visible = false
+
+[node name="Button3" type="Button" parent="MenuBar"]
+visible = false
+layout_mode = 0
+offset_left = 213.0
+offset_top = 4.0
+offset_right = 293.0
+offset_bottom = 35.0
+text = "crop"
+script = ExtResource("6_ja8ba")
+
+[node name="ApplyCrop" type="Button" parent="MenuBar/Button3"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 0
+offset_left = 87.0
+offset_right = 176.0
+offset_bottom = 31.0
+text = "apply crop
+"
+
+[node name="HSplitContainer" type="HSplitContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 62.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 0
+
+[node name="VSplitContainer" type="HSplitContainer" parent="HSplitContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Panel" type="Panel" parent="HSplitContainer/VSplitContainer"]
+custom_minimum_size = Vector2(200, 100)
+layout_mode = 2
+
+[node name="FileSystemTree" type="Tree" parent="HSplitContainer/VSplitContainer/Panel"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("4_uy8ya")
+allow_rmb_select = true
+script = ExtResource("4_cmcpy")
+
+[node name="FileDialog" type="FileDialog" parent="HSplitContainer/VSplitContainer/Panel"]
+title = "Open a Directory"
+position = Vector2i(600, 300)
+size = Vector2i(522, 400)
+ok_button_text = "Aktuális Mappa Kiválasztása"
+file_mode = 2
+access = 2
+root_subfolder = "/"
+
+[node name="VSplitContainer" type="VSplitContainer" parent="HSplitContainer/VSplitContainer"]
+layout_mode = 2
+
+[node name="Control2" type="Panel" parent="HSplitContainer/VSplitContainer/VSplitContainer"]
+clip_contents = true
+custom_minimum_size = Vector2(1000, 500)
+layout_mode = 2
+
+[node name="myImageNode" type="TextureRect" parent="HSplitContainer/VSplitContainer/VSplitContainer/Control2"]
+texture_filter = 2
+material = SubResource("ShaderMaterial_bfv14")
+custom_minimum_size = Vector2(1000, 500)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 1
+stretch_mode = 5
+script = ExtResource("3_g6mpa")
+
+[node name="Mask" type="TextureRect" parent="HSplitContainer/VSplitContainer/VSplitContainer/Control2/myImageNode"]
+unique_name_in_owner = true
+material = SubResource("ShaderMaterial_t4h6m")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 1
+stretch_mode = 5
+script = ExtResource("11_ow3go")
+
+[node name="Control" type="Control" parent="HSplitContainer/VSplitContainer/VSplitContainer"]
+layout_mode = 2
+
+[node name="TabContainer" type="TabContainer" parent="HSplitContainer/VSplitContainer/VSplitContainer/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("7_e5wr8")
+script = ExtResource("13_r7dsj")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="HSplitContainer/VSplitContainer/VSplitContainer/Control/TabContainer"]
+layout_mode = 2
+
+[node name="ImageGridContainer" type="GridContainer" parent="HSplitContainer/VSplitContainer/VSplitContainer/Control/TabContainer/ScrollContainer"]
+unique_name_in_owner = true
+clip_contents = true
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/h_separation = 15
+theme_override_constants/v_separation = 15
+columns = 7
+script = ExtResource("9_4hhjx")
+
+[node name="Control" parent="HSplitContainer/VSplitContainer/VSplitContainer/Control/TabContainer/ScrollContainer/ImageGridContainer" instance=ExtResource("16_r74jj")]
+layout_mode = 2
+
+[node name="Control2" parent="HSplitContainer/VSplitContainer/VSplitContainer/Control/TabContainer/ScrollContainer/ImageGridContainer" instance=ExtResource("16_r74jj")]
+layout_mode = 2
+
+[node name="Control3" parent="HSplitContainer/VSplitContainer/VSplitContainer/Control/TabContainer/ScrollContainer/ImageGridContainer" instance=ExtResource("16_r74jj")]
+layout_mode = 2
+
+[node name="Control4" parent="HSplitContainer/VSplitContainer/VSplitContainer/Control/TabContainer/ScrollContainer/ImageGridContainer" instance=ExtResource("16_r74jj")]
+layout_mode = 2
+
+[node name="Control5" parent="HSplitContainer/VSplitContainer/VSplitContainer/Control/TabContainer/ScrollContainer/ImageGridContainer" instance=ExtResource("16_r74jj")]
+layout_mode = 2
+
+[node name="Control6" parent="HSplitContainer/VSplitContainer/VSplitContainer/Control/TabContainer/ScrollContainer/ImageGridContainer" instance=ExtResource("16_r74jj")]
+layout_mode = 2
+
+[node name="Control7" parent="HSplitContainer/VSplitContainer/VSplitContainer/Control/TabContainer/ScrollContainer/ImageGridContainer" instance=ExtResource("16_r74jj")]
+visible = false
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="HSplitContainer/VSplitContainer/VSplitContainer/Control/TabContainer/ScrollContainer"]
+visible = false
+layout_mode = 2
+
+[node name="ShaderEdit" parent="HSplitContainer/VSplitContainer/VSplitContainer/Control/TabContainer" instance=ExtResource("16_bmps8")]
+layout_mode = 2
+text = "/*$define float a = 8.0;
+void main(){
+
+}*/
+
+$define float x = 8.0; range(0.0, 256.0, 0.01)
+$define float y = 8.0; range(0.0, 256.0, 0.01)
+
+
+void main(){
+		const vec2 size = vec2(buf.x, buf.y);
+
+    vec2 pixelCoord = vec2(gl_GlobalInvocationID.xy);
+    vec2 resolution = vec2(imageSize(target_image));
+    vec2 screenPixelSize = 1.0 / resolution;
+    vec2 screenUV = pixelCoord / resolution;
+
+    vec2 norm_size = size * screenPixelSize;
+    bool _half = mod(screenUV.y / 2.0, norm_size.y) / norm_size.y < 0.5;
+    vec2 uv = screenUV + vec2(norm_size.x * 0.5 * float(_half), 0.0);
+    vec2 center_uv = floor(uv / norm_size) * norm_size;
+    vec2 norm_uv = mod(uv, norm_size) / norm_size;
+    center_uv += mix(vec2(0.0, 0.0),
+                     mix(mix(vec2(norm_size.x, -norm_size.y),
+                             vec2(0.0, -norm_size.y),
+                             float(norm_uv.x < 0.5)),
+                         mix(vec2(0.0, -norm_size.y),
+                             vec2(-norm_size.x, -norm_size.y),
+                             float(norm_uv.x < 0.5)),
+                         float(_half)),
+                     float(norm_uv.y < 0.3333333) * float(norm_uv.y / 0.3333333 < (abs(norm_uv.x - 0.5) * 2.0)));
+
+   color = imageLoad(source, ivec2(center_uv * vec2(imageSize(source))));
+}
+"
+
+[node name="Control" type="Control" parent="HSplitContainer/VSplitContainer/VSplitContainer/Control/TabContainer"]
+visible = false
+layout_mode = 2
+
+[node name="Panel" type="Panel" parent="HSplitContainer"]
+custom_minimum_size = Vector2(270, 0)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HSplitContainer/Panel"]
+custom_minimum_size = Vector2(266, 250)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TabBar" type="TabBar" parent="HSplitContainer/Panel/VBoxContainer"]
+layout_mode = 2
+tab_alignment = 1
+tab_count = 2
+tab_0/title = "Effects"
+tab_1/title = "Mask effects"
+script = ExtResource("13_yuk3y")
+
+[node name="MaskManager" parent="HSplitContainer/Panel/VBoxContainer" instance=ExtResource("20_j34kd")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Label" parent="HSplitContainer/Panel/VBoxContainer/MaskManager/Panel/Container" index="1"]
+text = "Manage masks"
+
+[node name="MaskManager" parent="HSplitContainer/Panel/VBoxContainer/MaskManager" instance=ExtResource("17_mb4wd")]
+clip_contents = true
+custom_minimum_size = Vector2(50, 300)
+layout_mode = 2
+
+[node name="HBoxContainer" parent="HSplitContainer/Panel/VBoxContainer" instance=ExtResource("20_j34kd")]
+layout_mode = 2
+
+[node name="Label" parent="HSplitContainer/Panel/VBoxContainer/HBoxContainer/Panel/Container" index="1"]
+text = "Crop tool"
+
+[node name="Control" parent="HSplitContainer/Panel/VBoxContainer/HBoxContainer" instance=ExtResource("23_hjv82")]
+layout_mode = 2
+
+[node name="Histogram" type="VBoxContainer" parent="HSplitContainer/Panel/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+script = ExtResource("14_fbafv")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="HSplitContainer/Panel/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+vertical_scroll_mode = 2
+
+[node name="rightSidePanel" type="VBoxContainer" parent="HSplitContainer/Panel/VBoxContainer/ScrollContainer"]
+unique_name_in_owner = true
+self_modulate = Color(0.85098, 0.85098, 0.85098, 1)
+custom_minimum_size = Vector2(40, 100)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = SubResource("Theme_8aup1")
+theme_override_constants/separation = 8
+script = ExtResource("9_j7qxg")
+
+[node name="MaskScrollContainer" type="ScrollContainer" parent="HSplitContainer/Panel/VBoxContainer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+size_flags_vertical = 3
+script = ExtResource("18_bwr07")
+
+[node name="CropScrollContainer" type="ScrollContainer" parent="HSplitContainer/Panel/VBoxContainer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="grayscaleButton" type="Button" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 1765.0
+offset_top = 32.0
+offset_right = 1863.0
+offset_bottom = 63.0
+text = "GRAYSCALE"
+
+[node name="MaskDrawOverlay" type="TextureRect" parent="."]
+self_modulate = Color(0.972549, 1, 1, 1)
+material = SubResource("ShaderMaterial_wmh3f")
+clip_contents = true
+layout_mode = 0
+offset_left = 223.0
+offset_top = 68.0
+offset_right = 1632.0
+offset_bottom = 543.0
+mouse_filter = 0
+expand_mode = 1
+stretch_mode = 5
+script = ExtResource("26_py037")
+
+[node name="ClipDrawing" type="Control" parent="."]
+visible = false
+anchors_preset = 0
+offset_left = 219.0
+offset_top = 62.0
+offset_right = 1638.0
+offset_bottom = 578.0
+mouse_filter = 1
+script = ExtResource("22_n1tup")
+
+[connection signal="file_selected" from="FileDialog" to="HSplitContainer/VSplitContainer/VSplitContainer/Control2/myImageNode" method="_on_file_dialog_file_selected"]
+[connection signal="pressed" from="MenuBar/Button" to="FileDialog" method="_on_button_pressed"]
+[connection signal="pressed" from="MenuBar/Button2" to="MenuBar/Button2" method="_on_pressed"]
+[connection signal="pressed" from="MenuBar/Button3/ApplyCrop" to="MenuBar/Button3" method="_on_apply_crop_pressed"]
+[connection signal="item_collapsed" from="HSplitContainer/VSplitContainer/Panel/FileSystemTree" to="HSplitContainer/VSplitContainer/Panel/FileSystemTree" method="_on_item_collapsed"]
+[connection signal="item_mouse_selected" from="HSplitContainer/VSplitContainer/Panel/FileSystemTree" to="HSplitContainer/VSplitContainer/VSplitContainer/Control/TabContainer/ScrollContainer/ImageGridContainer" method="_on_tree_item_mouse_selected"]
+[connection signal="mouse_exited" from="HSplitContainer/VSplitContainer/Panel/FileSystemTree" to="HSplitContainer/VSplitContainer/Panel/FileSystemTree" method="_on_mouse_exited"]
+[connection signal="dir_selected" from="HSplitContainer/VSplitContainer/Panel/FileDialog" to="HSplitContainer/VSplitContainer/Panel/FileSystemTree" method="_on_file_dialog_dir_selected"]
+[connection signal="resized" from="HSplitContainer/VSplitContainer/VSplitContainer/Control2/myImageNode" to="HSplitContainer/VSplitContainer/VSplitContainer/Control2/myImageNode" method="_on_resized"]
+[connection signal="resized" from="HSplitContainer/VSplitContainer/VSplitContainer/Control2/myImageNode" to="MaskDrawOverlay" method="_on_my_image_node_resized"]
+[connection signal="mouse_entered" from="HSplitContainer/VSplitContainer/VSplitContainer/Control2/myImageNode/Mask" to="HSplitContainer/VSplitContainer/VSplitContainer/Control2/myImageNode/Mask" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="HSplitContainer/VSplitContainer/VSplitContainer/Control2/myImageNode/Mask" to="HSplitContainer/VSplitContainer/VSplitContainer/Control2/myImageNode/Mask" method="_on_mouse_exited"]
+[connection signal="resized" from="HSplitContainer/VSplitContainer/VSplitContainer/Control2/myImageNode/Mask" to="HSplitContainer/VSplitContainer/VSplitContainer/Control2/myImageNode/Mask" method="_on_resized"]
+[connection signal="tab_selected" from="HSplitContainer/VSplitContainer/VSplitContainer/Control/TabContainer" to="HSplitContainer/VSplitContainer/VSplitContainer/Control/TabContainer" method="_on_tab_selected"]
+[connection signal="resized" from="HSplitContainer/VSplitContainer/VSplitContainer/Control/TabContainer/ScrollContainer" to="HSplitContainer/VSplitContainer/VSplitContainer/Control/TabContainer/ScrollContainer/ImageGridContainer" method="_on_scroll_container_resized"]
+[connection signal="tab_button_pressed" from="HSplitContainer/Panel/VBoxContainer/TabBar" to="HSplitContainer/Panel/VBoxContainer/TabBar" method="_on_tab_button_pressed"]
+[connection signal="tab_clicked" from="HSplitContainer/Panel/VBoxContainer/TabBar" to="HSplitContainer/Panel/VBoxContainer/TabBar" method="_on_tab_clicked"]
+[connection signal="tab_hovered" from="HSplitContainer/Panel/VBoxContainer/TabBar" to="HSplitContainer/Panel/VBoxContainer/TabBar" method="_on_tab_hovered"]
+[connection signal="tab_selected" from="HSplitContainer/Panel/VBoxContainer/TabBar" to="HSplitContainer/Panel/VBoxContainer/TabBar" method="_on_tab_selected"]
+[connection signal="mouse_entered" from="HSplitContainer/Panel/VBoxContainer/MaskManager/MaskManager" to="HSplitContainer/Panel/VBoxContainer/MaskManager/MaskManager" method="_on_mouse_entered"]
+[connection signal="index_changed_for_effect" from="HSplitContainer/Panel/VBoxContainer/ScrollContainer/rightSidePanel" to="HSplitContainer/VSplitContainer/VSplitContainer/Control2/myImageNode" method="_on_right_side_panel_index_changed_for_effect"]
+[connection signal="pressed" from="grayscaleButton" to="HSplitContainer/VSplitContainer/VSplitContainer/Control2/myImageNode" method="_on_grayscale_button_pressed"]
+[connection signal="mouse_entered" from="MaskDrawOverlay" to="MaskDrawOverlay" method="_on_mouse_entered"]
+[connection signal="resized" from="MaskDrawOverlay" to="MaskDrawOverlay" method="_on_resized"]
+[connection signal="resized" from="ClipDrawing" to="ClipDrawing" method="_on_resized"]
+
+[editable path="HSplitContainer/Panel/VBoxContainer/MaskManager"]
+[editable path="HSplitContainer/Panel/VBoxContainer/HBoxContainer"]

@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://n1a5pid4n0p"]
+
+[ext_resource type="Script" path="res://ShaderLayer.gd" id="1_l0iwn"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_njkyb"]
+
+[node name="Layer" type="CanvasLayer"]
+script = ExtResource("1_l0iwn")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+unique_name_in_owner = true
+material = SubResource("ShaderMaterial_njkyb")

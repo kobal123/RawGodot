@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://16bjtgrubygx"]
+
+[ext_resource type="Script" path="res://text_test.gd" id="1_l3dhp"]
+[ext_resource type="Script" path="res://Buttonasdasd.gd" id="2_x1wor"]
+
+[node name="ColorRect" type="ColorRect"]
+offset_right = 1347.0
+offset_bottom = 879.0
+color = Color(0.0470588, 0.0470588, 0.0470588, 0.396078)
+script = ExtResource("1_l3dhp")
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 638.0
+offset_top = 135.0
+offset_right = 769.0
+offset_bottom = 226.0
+script = ExtResource("2_x1wor")
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

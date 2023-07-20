@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://wbwvb1i6rwhb"]
+
+[ext_resource type="Script" path="res://histogram_root.gd" id="1_4nk4m"]
+[ext_resource type="PackedScene" uid="uid://dw5qdca04qeik" path="res://Foldable_item.tscn" id="2_pv7ty"]
+
+[node name="Control" type="HBoxContainer"]
+custom_minimum_size = Vector2(180, 30)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -1740.0
+offset_bottom = -1050.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+script = ExtResource("1_4nk4m")
+
+[node name="HBoxContainer" parent="." instance=ExtResource("2_pv7ty")]
+unique_name_in_owner = true
+layout_mode = 2

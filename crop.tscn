@@ -1,0 +1,114 @@
+[gd_scene load_steps=4 format=3 uid="uid://cvpsl7fnxphqm"]
+
+[ext_resource type="Script" path="res://CropItemList.gd" id="1_1glm2"]
+[ext_resource type="Script" path="res://ApplyCropButton.gd" id="2_rq841"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6xvst"]
+bg_color = Color(0.215686, 0.215686, 0.215686, 1)
+
+[node name="Control" type="Panel"]
+custom_minimum_size = Vector2(250, 200)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -1667.0
+offset_bottom = -880.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_6xvst")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+custom_minimum_size = Vector2(250, 200)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -3.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 14
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="CropLabel" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Aspect:"
+
+[node name="OptionButton" type="OptionButton" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 10
+size_flags_vertical = 4
+item_count = 7
+selected = 0
+popup/item_0/text = "Custom"
+popup/item_0/id = 0
+popup/item_1/text = "As Shot"
+popup/item_1/id = 1
+popup/item_2/text = "4 x 5 / 8 x 10"
+popup/item_2/id = 2
+popup/item_3/text = "16 x 9"
+popup/item_3/id = 3
+popup/item_4/text = "1 x 1"
+popup/item_4/id = 4
+popup/item_5/text = "4 x 3"
+popup/item_5/id = 5
+popup/item_6/text = "2 x 3"
+popup/item_6/id = 6
+script = ExtResource("1_1glm2")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Width:     "
+
+[node name="WidthEdit" type="LineEdit" parent="MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 10
+text = "0"
+alignment = 2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+text = "Height:    "
+
+[node name="HeightEdit" type="LineEdit" parent="MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 10
+text = "0"
+alignment = 2
+
+[node name="buttonsContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 10
+
+[node name="CancelButton" type="Button" parent="MarginContainer/VBoxContainer/buttonsContainer"]
+visible = false
+layout_mode = 2
+text = "Cancel"
+
+[node name="ApplyButton" type="Button" parent="MarginContainer/VBoxContainer/buttonsContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Apply
+"
+script = ExtResource("2_rq841")
+
+[connection signal="item_selected" from="MarginContainer/VBoxContainer/HBoxContainer/OptionButton" to="MarginContainer/VBoxContainer/HBoxContainer/OptionButton" method="_on_item_selected"]

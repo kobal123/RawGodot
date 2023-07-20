@@ -1,0 +1,69 @@
+[gd_scene load_steps=6 format=3 uid="uid://8owrexdqn12m"]
+
+[ext_resource type="Script" path="res://mask_editor_piece.gd" id="1_lvm4a"]
+[ext_resource type="PackedScene" uid="uid://b2v63xqbcshb8" path="res://call_back_check_box.tscn" id="1_nk8p2"]
+[ext_resource type="Script" path="res://Mask_slider.gd" id="2_m5cll"]
+[ext_resource type="Script" path="res://Mask_spinbox.gd" id="3_3v7by"]
+
+[sub_resource type="Theme" id="Theme_nftc3"]
+
+[node name="ControlRoot" type="VBoxContainer"]
+custom_minimum_size = Vector2(200, 50)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -1630.0
+offset_bottom = -1020.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_lvm4a")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="CheckBox" parent="HBoxContainer" instance=ExtResource("1_nk8p2")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+
+[node name="funcLabel" type="Label" parent="HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 1
+theme_override_font_sizes/font_size = 14
+text = "kontraszt"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Panel" type="HBoxContainer" parent="."]
+layout_mode = 2
+theme = SubResource("Theme_nftc3")
+theme_override_constants/separation = 4
+
+[node name="CheckBox" type="CheckBox" parent="Panel"]
+visible = false
+layout_mode = 2
+
+[node name="HSlider" type="HSlider" parent="Panel"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 31)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.49
+value = 50.0
+script = ExtResource("2_m5cll")
+
+[node name="SpinBox" type="SpinBox" parent="Panel"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+step = 0.1
+alignment = 2
+script = ExtResource("3_3v7by")
+
+[connection signal="value_changed" from="Panel/HSlider" to="Panel/HSlider" method="_on_value_changed"]
+[connection signal="value_changed" from="Panel/HSlider" to="Panel/SpinBox" method="_on_h_slider_value_changed"]
+[connection signal="value_changed" from="Panel/SpinBox" to="Panel/HSlider" method="_on_spin_box_value_changed"]
+[connection signal="value_changed" from="Panel/SpinBox" to="Panel/SpinBox" method="_on_value_changed"]

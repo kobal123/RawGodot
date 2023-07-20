@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://b228wv1dgippd"]
+
+[ext_resource type="Script" path="res://MaskPanel.gd" id="1_8ldph"]
+
+[node name="MaskPanel" type="VBoxContainer"]
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_8ldph")

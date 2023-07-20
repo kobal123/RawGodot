@@ -1,0 +1,136 @@
+[gd_scene load_steps=6 format=3 uid="uid://div5bippnwpw0"]
+
+[ext_resource type="StyleBox" uid="uid://5qouhw2taqh3" path="res://round_button.tres" id="1_p0yti"]
+[ext_resource type="Script" path="res://mask.gd" id="1_qbqss"]
+[ext_resource type="Script" path="res://create_new_mask.gd" id="2_xh7ch"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_omf5r"]
+bg_color = Color(0.788235, 0.501961, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ceewh"]
+bg_color = Color(0.113725, 0.113725, 0.113725, 1)
+
+[node name="Control" type="Panel"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -1573.0
+offset_bottom = -774.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_qbqss")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 9
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 25
+theme_override_constants/margin_top = 12
+
+[node name="VBoxContainer" type="HBoxContainer" parent="VBoxContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 13
+
+[node name="Button" type="Button" parent="VBoxContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(26, 0)
+layout_mode = 2
+theme_override_styles/normal = ExtResource("1_p0yti")
+theme_override_styles/hover = ExtResource("1_p0yti")
+theme_override_styles/pressed = ExtResource("1_p0yti")
+theme_override_styles/focus = ExtResource("1_p0yti")
+text = "+"
+script = ExtResource("2_xh7ch")
+
+[node name="Label2" type="Label" parent="VBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Create new mask"
+
+[node name="MarginContainer5" type="MarginContainer" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 25
+theme_override_constants/margin_right = 45
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/MarginContainer5"]
+layout_mode = 2
+
+[node name="CheckButton" type="CheckButton" parent="VBoxContainer/MarginContainer5/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/focus = SubResource("StyleBoxFlat_omf5r")
+text = "Draw  "
+
+[node name="Label3" type="Label" parent="VBoxContainer/MarginContainer5/HBoxContainer"]
+layout_mode = 2
+text = "Erase"
+vertical_alignment = 1
+
+[node name="MarginContainer4" type="MarginContainer" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 26
+theme_override_constants/margin_right = 25
+
+[node name="VBoxContainer" type="HBoxContainer" parent="VBoxContainer/MarginContainer4"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Label" type="Label" parent="VBoxContainer/MarginContainer4/VBoxContainer"]
+layout_mode = 2
+text = "Brush size"
+
+[node name="BrushSlider" type="HSlider" parent="VBoxContainer/MarginContainer4/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme_override_constants/grabber_offset = 0
+min_value = 40.0
+max_value = 800.0
+value = 40.0
+
+[node name="MarginContainer3" type="MarginContainer" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 25
+theme_override_constants/margin_right = 25
+
+[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer/MarginContainer3"]
+custom_minimum_size = Vector2(220, 130)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_ceewh")
+
+[node name="MaskItemContainer" type="VBoxContainer" parent="VBoxContainer/MarginContainer3/ScrollContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="MarginContainer2" type="MarginContainer" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 22
+theme_override_constants/margin_right = 25
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/MarginContainer2"]
+layout_mode = 2
+
+[node name="OverlayCheckBox" type="CheckBox" parent="VBoxContainer/MarginContainer2/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+button_pressed = true
+text = "Show overlay"
+
+[node name="ColorPickerButton" type="ColorPickerButton" parent="VBoxContainer/MarginContainer2/HBoxContainer"]
+custom_minimum_size = Vector2(31, 0)
+layout_mode = 2
+size_flags_horizontal = 10
+
+[connection signal="toggled" from="VBoxContainer/MarginContainer5/HBoxContainer/CheckButton" to="." method="_on_check_button_toggled"]
+[connection signal="value_changed" from="VBoxContainer/MarginContainer4/VBoxContainer/BrushSlider" to="." method="_on_brush_slider_value_changed"]
+[connection signal="toggled" from="VBoxContainer/MarginContainer2/HBoxContainer/OverlayCheckBox" to="." method="_on_overlay_check_box_toggled"]
+[connection signal="color_changed" from="VBoxContainer/MarginContainer2/HBoxContainer/ColorPickerButton" to="." method="_on_color_picker_button_color_changed"]

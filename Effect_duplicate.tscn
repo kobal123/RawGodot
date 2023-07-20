@@ -1,0 +1,35 @@
+[gd_scene load_steps=3 format=3 uid="uid://dekkmex7eu0k0"]
+
+[ext_resource type="Script" path="res://create_effect_window.gd" id="1_ebnhh"]
+[ext_resource type="Script" path="res://effetc_item_list.gd" id="2_wah74"]
+
+[node name="MenuBar" type="MenuBar"]
+
+[node name="MenuButton" type="Button" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_font_sizes/font_size = 20
+text = "+"
+
+[node name="Window" type="ConfirmationDialog" parent="MenuButton"]
+position = Vector2i(800, 500)
+size = Vector2i(300, 300)
+visible = true
+script = ExtResource("1_ebnhh")
+
+[node name="EffectItemList" type="ItemList" parent="MenuButton/Window"]
+unique_name_in_owner = true
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 292.0
+offset_bottom = 251.0
+item_count = 4
+item_0/text = "Saturation"
+item_1/text = "Contrast"
+item_2/text = "Brightness"
+item_3/text = "Sharpness"
+script = ExtResource("2_wah74")
+
+[connection signal="pressed" from="MenuButton" to="MenuButton/Window" method="_on_menu_button_pressed"]
+[connection signal="confirmed" from="MenuButton/Window" to="MenuButton/Window" method="_on_confirmed"]
