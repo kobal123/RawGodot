@@ -21,8 +21,8 @@ signal path_changed(path: String)
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	# Load data from a file.
-	
-	var err = config.load("user://last_image.cfg")
+
+	var err = config.load("user://last_image2.cfg")
 	
 
 # If the file didn't load, ignore it.
@@ -221,7 +221,7 @@ func _notification(what):
 			print("QUITTING APPLICATION")
 			print("CURRENT ITEM IMAGE PATH: ", get_full_path(current_image_tree_item))
 			config.set_value("IMAGE","IMAGE_PATH",get_full_path(current_image_tree_item))
-			config.save("user://last_image.cfg")
+			config.save("user://last_image2.cfg")
 			
 		get_tree().quit() # default behavior
 

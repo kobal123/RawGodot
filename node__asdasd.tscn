@@ -1,18 +1,16 @@
-[gd_scene load_steps=3 format=3]
+[gd_scene load_steps=3 format=3 uid="uid://oimrxlf8t2ic"]
 
 [ext_resource type="Script" path="res://Controll.gd" id="1_1h5sr"]
 [ext_resource type="Script" path="res://TextEdit2.gd" id="2_23ynk"]
 
-[node name="@Control@17" type="ColorRect"]
+[node name="Control17" type="ColorRect"]
 custom_minimum_size = Vector2(50, 50)
-layout_mode = 0
 offset_left = 620.0
 offset_top = 629.0
 offset_right = 770.0
 offset_bottom = 779.0
 color = Color(1, 1, 1, 0)
 script = ExtResource("1_1h5sr")
-connections_str = Array[String]([])
 line_edit_text = "asdasd"
 
 [node name="LineEdit" type="LineEdit" parent="."]
@@ -44,9 +42,6 @@ context_menu_enabled = false
 drag_and_drop_selection_enabled = false
 caret_blink = true
 script = ExtResource("2_23ynk")
-img_positions = PackedVector2Array()
-images = Array[String]([])
-_name = ""
 
 [connection signal="text_changed" from="LineEdit" to="ColorRect" method="_on_line_edit_text_changed" flags=18]
 [connection signal="text_changed" from="ColorRect" to="ColorRect" method="_on_text_changed" flags=18]

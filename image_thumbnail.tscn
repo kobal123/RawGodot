@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://76yybijhju3m"]
 
 [ext_resource type="Script" path="res://image_thumbnail_root.gd" id="1_eco1h"]
-[ext_resource type="Texture2D" uid="uid://clq14j8jjbcyn" path="res://sony.ARW" id="2_aytdj"]
+[ext_resource type="Texture2D" uid="uid://cy0c66upfjmmq" path="res://dummy.png" id="2_05l2i"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_ri2lo"]
 
@@ -50,7 +50,7 @@ unique_name_in_owner = true
 custom_minimum_size = Vector2(350, 180)
 layout_mode = 2
 size_flags_vertical = 3
-texture = ExtResource("2_aytdj")
+texture = ExtResource("2_05l2i")
 expand_mode = 1
 stretch_mode = 5
 

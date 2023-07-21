@@ -537,16 +537,16 @@ func recreate_pipelines_and_uniforms():
 	GAUSS_HORIZONTAL = -1
 	GAUSS_VERTICAL = -1
 	current_texture = 0
-	print("CURRENT ORDER: ")
-	for index in len(effect_order_mapper):
-		print(index,": ", effect_order_mapper[index])
-	print("BUFFER ORDER: ")
-	for index in len(buffer_mapper):
-		print("index: ", index,": ID", buffer_mapper[index].ID," : ", SHADER_NAMES[buffer_mapper[index].shader_id])
+#	print("CURRENT ORDER: ")
+#	for index in len(effect_order_mapper):
+#		print(index,": ", effect_order_mapper[index])
+#	print("BUFFER ORDER: ")
+#	for index in len(buffer_mapper):
+#		print("index: ", index,": ID", buffer_mapper[index].ID," : ", SHADER_NAMES[buffer_mapper[index].shader_id])
 	
 	clean_uniforms(0)
 	clean_pipelines(0)
-	var effect = buffer_mapper[0]
+#	var effect = buffer_mapper[0]
 	create_first_uniform_set(0)
 	create_pipeline(0)
 #		print("all shaders: ", shaders)

@@ -5,9 +5,11 @@
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_qgwbw"]
 shader = ExtResource("2_8vkd4")
+shader_parameter/zoom = 1.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_yknfq"]
 shader = ExtResource("2_8vkd4")
+shader_parameter/zoom = 1.0
 
 [node name="Control" type="Control"]
 layout_mode = 3
